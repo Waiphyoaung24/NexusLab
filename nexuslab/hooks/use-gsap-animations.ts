@@ -1,10 +1,14 @@
+import { gsap, ScrollSmoother, ScrollTrigger } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
 import { useRef } from 'react'
-import { gsap, ScrollTrigger, ScrollSmoother } from '@/lib/utils'
 
 export function useGSAPAnimations() {
   const main = useRef<HTMLDivElement>(null)
   const smoother = useRef<ScrollSmoother | null>(null)
+  const navRef = useRef<HTMLElement>(null)
+  const navContainerRef = useRef<HTMLDivElement>(null)
+  const logoRef = useRef<HTMLDivElement>(null)
+  const menuRef = useRef<HTMLUListElement>(null)
 
   useGSAP(
     () => {
@@ -13,6 +17,8 @@ export function useGSAPAnimations() {
         smooth: 1.5,
         effects: true,
         smoothTouch: 0.1,
+        ignoreMobileResize: true,
+        normalizeScroll: true,
       })
 
       // Hero animations
@@ -80,19 +86,34 @@ export function useGSAPAnimations() {
 
       // Section animations
       gsap.utils.toArray('.section').forEach((section) => {
-        gsap.from((section as Element).querySelectorAll('.fade-in'), {
-          scrollTrigger: {
-            trigger: section as Element,
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 0,
-          y: 60,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'power3.out',
+        const fadeElements = (section as Element).querySelectorAll('.fade-in')
+        
+        // Set initial state
+        gsap.set(fadeElements, {
+          opacity: 1,
+          y: 0
         })
+        
+        // Create animation
+        gsap.fromTo(fadeElements, 
+          {
+            opacity: 0,
+            y: 60
+          },
+          {
+            scrollTrigger: {
+              trigger: section as Element,
+              start: 'top 80%',
+              end: 'bottom 20%',
+              toggleActions: 'play none none reverse',
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power3.out',
+          }
+        )
       })
 
       // Service cards animation
@@ -120,6 +141,43 @@ export function useGSAPAnimations() {
           delay: Math.random() * 0.5,
         })
       })
+
+      // Static Navigation Setup - No scroll-based animations
+      if (navRef.current) {
+        const nav = navRef.current
+
+        // Ensure navigation is always visible in glassmorphism state
+        gsap.set(nav, {
+          position: 'fixed',
+          top: '20px',
+          left: 0,
+          right: 0,
+          width: '100%',
+          zIndex: 9999,
+          opacity: 1,
+          visibility: 'visible',
+          display: 'block'
+        })
+
+        // Add independent floating animation using GSAP
+        gsap.to(nav, {
+          y: -2,
+          duration: 3,
+          ease: 'power2.inOut',
+          yoyo: true,
+          repeat: -1
+        })
+
+        // Add subtle glow pulse animation
+        gsap.to(nav, {
+          boxShadow: '0 20px 60px rgba(0, 217, 255, 0.25)',
+          duration: 4,
+          ease: 'power2.inOut',
+          yoyo: true,
+          repeat: -1,
+          delay: 1
+        })
+      }
     },
     {
       scope: main,
@@ -130,5 +188,12 @@ export function useGSAPAnimations() {
     smoother.current?.scrollTo(selector, true, 'top 100px')
   }
 
-  return { main, scrollToSection }
+  return { 
+    main, 
+    scrollToSection,
+    navRef,
+    navContainerRef,
+    logoRef,
+    menuRef
+  }
 }
