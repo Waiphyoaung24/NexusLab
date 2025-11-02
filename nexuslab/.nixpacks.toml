@@ -1,11 +1,18 @@
 [phases.setup]
-nixPkgs = ["nodejs-25.1.0"]
+nixPkgs = ["nodejs_25"]
 
 [phases.install]
-cmds = ["npm ci"]
+cmds = [
+  "node --version",
+  "npm --version",
+  "npm ci"
+]
 
 [phases.build]
-cmds = ["npm run build"]
+cmds = [
+  "node --version",
+  "npm run build"
+]
 
 [start]
-cmd = "npm run start"
+cmd = "npm start"
