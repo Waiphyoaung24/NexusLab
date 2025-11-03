@@ -43,7 +43,7 @@ Please contact me to discuss how AI can transform my business.
 
 Best regards`);
               
-              window.location.href = `mailto:sales@nexuslab.ai?subject=${subject}&body=${body}`;
+              window.location.href = `mailto:nexuslab.dev.mm@gmail.com?subject=${subject}&body=${body}`;
             }}>
               <div className="form-row">
                 <div className="form-group">
