@@ -55,11 +55,8 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
       </svg>
       
       <div className="hero-content" data-speed="0.8">
-        <h1 className="hero-title">Nexus Lab</h1>
-        <p className="hero-subtitle">Transforming Business Through AI-Powered Digital Solutions</p>
-        <p className="hero-description">
-          We harness the power of artificial intelligence to deliver innovative digital solutions that drive growth and efficiency
-        </p>
+        <h1 className="hero-title">Transforming Through AI-Powered Digital Solutions</h1>
+        <p className="hero-subtitle">We take care of your A.I</p>
         <button className="cta-button" onClick={() => scrollToSection('.contact')}>
           Get Started
         </button>

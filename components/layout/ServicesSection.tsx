@@ -14,12 +14,6 @@ const services = [
     bgClass: 'ml-bg'
   },
   {
-    icon: 'NLP',
-    title: 'NLP Solutions',
-    description: 'Natural language processing tools for chatbots, sentiment analysis, and content generation',
-    bgClass: 'nlp-bg'
-  },
-  {
     icon: 'DA',
     title: 'Data Analytics',
     description: 'Transform raw data into actionable insights with AI-powered analytics and visualization',
@@ -36,6 +30,12 @@ const services = [
     title: 'AI Consulting',
     description: 'Strategic guidance on AI adoption and implementation tailored to your business needs',
     bgClass: 'consulting-bg'
+  },
+  {
+    icon: 'SD',
+    title: 'Software Development',
+    description: 'Project-based or contract-based software development services',
+    bgClass: 'software-bg'
   }
 ]
 
@@ -44,7 +44,7 @@ export default function ServicesSection() {
     <section className="services section">
       <div className="container">
         <h2 className="section-title fade-in">Our AI Solutions</h2>
-        <p className="section-subtitle fade-in">Empowering businesses with intelligent technology</p>
+        <p className="section-subtitle fade-in">Empowering Growth and Efficiency with A.I.</p>
         <div className="services-grid">
           {services.map((service, index) => (
             <div key={index} className={`service-card ${service.bgClass}`} data-speed="0.95">

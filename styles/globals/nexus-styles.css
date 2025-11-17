@@ -398,7 +398,7 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3.5rem, 4vw, 4.5rem);
   font-weight: 800;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, #ffffff, var(--accent));
@@ -409,10 +409,22 @@ body {
 }
 
 .hero-subtitle {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
   font-weight: 600;
-  color: var(--light);
+  color: gray;
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+@keyframes text-glow {
+  from {
+    text-shadow: 0 0 10px #00d9ff, 0 0 20px #00d9ff, 0 0 30px #00d9ff;
+  }
+  to {
+    text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88, 0 0 40px #00ff88;
+  }
 }
 
 .hero-description {

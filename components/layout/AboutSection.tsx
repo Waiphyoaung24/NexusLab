@@ -7,9 +7,7 @@ export default function AboutSection() {
         <div className="about-header">
           <h2 className="section-title fade-in">Who We Are</h2>
           <p className="about-description fade-in">
-            Nexus Lab is a cutting-edge technology company specializing in artificial intelligence 
-            and digital transformation. We bridge the gap between complex AI technologies and 
-            practical business solutions.
+            We harness the power of A.I. to deliver practical and innovative solutions.
           </p>
         </div>
         
